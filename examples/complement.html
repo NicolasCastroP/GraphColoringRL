@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 800px;
+            height: 500px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"group": 1, "id": 0, "label": "{0, 65, 98, 67, 26, 38, 6, 8, 42, 75, 15, 83, 20, 94, 90, 91, 62}", "shape": "dot", "size": 29, "title": "Node group {0, 65, 98, 67, 26, 38, 6, 8, 42, 75, 15, 83, 20, 94, 90, 91, 62} color 0"}, {"group": 2, "id": 56, "label": "{32, 1, 97, 74, 10, 45, 46, 47, 48, 49, 82, 19, 56, 24, 60, 61}", "shape": "dot", "size": 29, "title": "Node group {32, 1, 97, 74, 10, 45, 46, 47, 48, 49, 82, 19, 56, 24, 60, 61} color 1"}, {"group": 4, "id": 68, "label": "{4, 27, 28, 30, 34, 35, 37, 41, 43, 53, 64, 66, 68, 71, 72, 85, 92, 95, 96}", "shape": "dot", "size": 29, "title": "Node group {4, 27, 28, 30, 34, 35, 37, 41, 43, 53, 64, 66, 68, 71, 72, 85, 92, 95, 96} color 3"}, {"group": 3, "id": 39, "label": "{33, 2, 39, 12, 77, 18, 93, 55, 86, 23, 22, 57, 58, 29, 63}", "shape": "dot", "size": 29, "title": "Node group {33, 2, 39, 12, 77, 18, 93, 55, 86, 23, 22, 57, 58, 29, 63} color 2"}, {"group": 6, "id": 73, "label": "{3, 36, 7, 73, 76, 44, 17, 51, 89, 25}", "shape": "dot", "size": 10, "title": "Node group {3, 36, 7, 73, 76, 44, 17, 51, 89, 25} color 5"}, {"group": 5, "id": 79, "label": "{99, 5, 70, 40, 9, 11, 13, 14, 79, 80, 78, 81, 50, 54, 87, 88, 59, 31}", "shape": "dot", "size": 29, "title": "Node group {99, 5, 70, 40, 9, 11, 13, 14, 79, 80, 78, 81, 50, 54, 87, 88, 59, 31} color 4"}, {"group": 7, "id": 69, "label": "{69, 16, 84, 21, 52}", "shape": "dot", "size": 10, "title": "Node group {69, 16, 84, 21, 52} color 6"}]);
+        edges = new vis.DataSet([{"from": 0, "to": 56, "weight": 1}, {"from": 0, "to": 68, "weight": 1}, {"from": 0, "to": 39, "weight": 1}, {"from": 0, "to": 73, "weight": 1}, {"from": 0, "to": 79, "weight": 1}, {"from": 0, "to": 69, "weight": 1}, {"from": 56, "to": 39, "weight": 1}, {"from": 56, "to": 73, "weight": 1}, {"from": 56, "to": 68, "weight": 1}, {"from": 56, "to": 79, "weight": 1}, {"from": 56, "to": 69, "weight": 1}, {"from": 68, "to": 39, "weight": 1}, {"from": 68, "to": 69, "weight": 1}, {"from": 68, "to": 79, "weight": 1}, {"from": 68, "to": 73, "weight": 1}, {"from": 39, "to": 69, "weight": 1}, {"from": 39, "to": 73, "weight": 1}, {"from": 39, "to": 79, "weight": 1}, {"from": 73, "to": 79, "weight": 1}, {"from": 73, "to": 69, "weight": 1}, {"from": 79, "to": 69, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
